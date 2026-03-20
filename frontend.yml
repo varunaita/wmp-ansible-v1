@@ -1,0 +1,14 @@
+- name: Frontend_setup
+  hosts: all
+  become: true
+  task:
+    - name: Install ngnix
+      ansible.builtin.dnf:
+        name: '@nginx:1.26'
+        state: present
+
+    - name: Update Nginx Config
+      ansible.builtin.copy:
+          src: nginx.conf
+          dest: /etc/nginx/nginx.conf
+          
